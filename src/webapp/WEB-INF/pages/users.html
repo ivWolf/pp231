@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+    <style>
+        body {
+        <tr th:each="user : ${users}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.email}"></td>
+        </tr>}
+    </style>
+</head>
+<body>
+<h1>Users List</h1>
+<div class="container">
+    <h1>Таблица с пользователями</h1>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.id}">Id</td>
+            <td th:text="${user.name}">Name</td>
+            <td th:text="${user.email}">Email</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <form method="post" action="/addUser">
+        <label for="name_add" >User Name</label>
+        <input name="name" type="text" id="name_add">
+        <br>
+        <label for="email_add">User Email</label>
+        <input name="email" type="text" id="email_add">
+        <br>
+        <input type="submit" value="Add User">
+    </form>
+
+    <form method="post" action="/deleteUser">
+        <label for="id_delete" >User ID</label>
+        <input name="id" type="text" id="id_delete">
+        <br>
+        <input type="submit" value="Delete User">
+    </form>
+    <form method="post" action="/updateUser">
+        <label for="id_update" >User ID</label>
+        <input name="id" type="text" id="id_update">
+        <br>
+        <label for="name_update" >User Name</label>
+        <input name="name" type="text" id="name_update">
+        <br>
+        <label for="email_update">User Email</label>
+        <input name="email" type="text" id="email_update">
+        <br>
+        <input type="submit" value="Update User">
+    </form>
+</div>
+</body>
+</html>
