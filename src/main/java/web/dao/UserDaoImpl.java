@@ -28,16 +28,12 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> getUsers(int count) {
-        return entityManager.createQuery("from User", User.class)
-                .getResultList()
-                .stream()
-                .limit(count)
-                .toList();
+        return entityManager.createQuery("SELECT u FROM User u", User.class).getResultList();
     }
 
     @Override
-    public void deleteUser(Long id) {
-        entityManager.remove(entityManager.find(User.class, id));
+    public void deleteUser(User user) {
+        entityManager.remove(entityManager.contains(user) ? user : entityManager.merge(user));
     }
 
     @Override
